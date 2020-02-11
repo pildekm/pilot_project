@@ -1,0 +1,18 @@
+{% load static %}
+<!doctype html>
+<html>
+    <head>
+        <title>{% block title %} {% endblock %}</title>
+        <link rel="stylesheet" href="{% static 'css/layout.css' %}">
+    </head>
+    <body>
+
+        <div class="site-container">
+            <nav>
+                {#        url 'Home' definiran u pilot_project/urls.py#}
+                <a href="{% url 'Home' %}">Home</a>
+            </nav>
+            {% block content %}{% endblock %}
+        </div>
+    </body>
+</html>
