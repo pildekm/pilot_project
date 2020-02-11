@@ -6,11 +6,12 @@
         <link rel="stylesheet" href="{% static 'css/layout.css' %}">
     </head>
     <body>
-
         <div class="site-container">
             <nav>
                 {#        url 'Home' definiran u pilot_project/urls.py#}
                 <a href="{% url 'Home' %}">Home</a>
+{#                courses je name space definiran u courses/urls.py#}
+                <a href="{% url 'courses:Courses' %}">Courses</a>
             </nav>
             {% block content %}{% endblock %}
         </div>
