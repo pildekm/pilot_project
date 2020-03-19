@@ -1,5 +1,7 @@
 {% extends "layout.html" %}
+{% load static %}
 
+{% block static %} <link rel="stylesheet" href="{% static 'courses/css/courses.css' %}"> {% endblock %}
 {%  block title %} Available Courses{% endblock %}
 
 {% block content %}
@@ -9,9 +11,17 @@
 {#        Detail definiran u courses/urls.py#}
         <header><a href="{% url 'courses:Detail' pk=course.pk %}">{{ course.title }}</a></header>
         <div class="card-copy">
-            {{ course.description }}
+            {% if course.description|wordcount <= 5 %}
+                {{ course.description }}
+            {% else %}
+                {{ course.description|truncatewords:5 }}
+                <a href="{% url 'courses:Detail' pk=course.pk %}">Read more</a>
+            {% endif %}
+        <div>Created on: {{ course.created_at|date:"d/m/y" }}</div>
         </div>
     </div>
     {% endfor %}
+{#    <div>Have questions? Contact us! <a href="mailto:{{ email }}">{{ email }}</a> </div>#}
+    <div>Have questions? Contact us! {{ email|urlize }} </div>
 </div>
 {% endblock %}

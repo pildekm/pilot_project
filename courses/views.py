@@ -4,7 +4,9 @@ from .models import Course, Step
 # Create your views here.
 def course_list(request):
     courses = Course.objects.all()
-    return render(request, 'courses/course_list.html', {'courses': courses})
+    email = 'abrakadabra@bre.com'
+    return render(request, 'courses/course_list.html', {'courses': courses,
+                                                        'email': email})
 
 def course_detail(request, pk):
     # course = Course.objects.get(pk=pk)

@@ -1,18 +1,23 @@
 {% load static %}
+{% load course_extras %}
+
 <!doctype html>
 <html>
     <head>
         <title>{% block title %} {% endblock %}</title>
         <link rel="stylesheet" href="{% static 'css/layout.css' %}">
+        {% block static %}{% endblock %}
     </head>
     <body>
         <div class="site-container">
+            <div>{% nav_courses_list %}</div>
             <nav>
                 {#        url 'Home' definiran u pilot_project/urls.py#}
                 <a href="{% url 'Home' %}">Home</a>
 {#                courses je name space definiran u courses/urls.py#}
                 <a href="{% url 'courses:Courses' %}">Courses</a>
             </nav>
+            <p>Don't miss our latest course, {% newest_course %}</p>
             {% block content %}{% endblock %}
         </div>
     </body>
