@@ -17,6 +17,7 @@
 {#                courses je name space definiran u courses/urls.py#}
                 <a href="{% url 'courses:Courses' %}">Courses</a>
             </nav>
+
             <p>Don't miss our latest course, {% newest_course %}</p>
             {% block content %}{% endblock %}
         </div>

@@ -125,3 +125,6 @@ STATICFILES_DIRS = ( os.path.join(BASE_DIR, 'assets'), )
 # STATICFILES_DIRS = (
 #     '/home/dope/Django/pilot_project/pilot_project/assets/css/layout.css',
 # )
+
+EMAIL_BACKEND = 'django.core.mail.backends.filebased.EmailBackend'
+EMAIL_FILE_PATH = os.path.join(BASE_DIR, 'suggestions')

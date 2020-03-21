@@ -27,6 +27,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     # dodano ime urla
     url(r'^$', views.hello_world, name='Home'),
+    url(r'^suggest/$', views.suggestion_view, name="Suggestion"),
 
 ]
 
