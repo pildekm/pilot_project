@@ -12,10 +12,28 @@
         <article>
             {{ block.super }}
             <h1>{{ step.title }}</h1>
+            <ul class="no-bullet">
+                {% for question in step.question_set.all %}
+                <li>
+                    <h2>{{ question.prompt }}</h2>
+                    {% for answer in question.answer_set.all %}
+                         <div class="callout">{{ answer.text }}</div>
+                    {% endfor %}
+                    {% if user.is_authenticated %}
+                        <hr>
+                        <a href="{% url 'courses:EditQuestion' question_pk=question.pk quiz_pk=step.pk %}" class="button">Edit</a>
+                    {% endif %}
+                </li>
+                {% endfor %}
+            </ul>
+
+
         </article>
         {% if user.is_authenticated %}
             <hr>
             <a href="{% url 'courses:EditQuiz' course_pk=step.course.pk quiz_pk=step.pk %}" class="button">Edit</a>
+            <a href="{% url 'courses:CreateQuestion' quiz_pk=step.pk question_type='mc' %}" class="button">New Multiple Choice Question</a>
+            <a href="{% url 'courses:CreateQuestion' quiz_pk=step.pk question_type='tf' %}" class="button">New True/False Question</a>
         {% endif %}
     </div>
 {% endblock %}
